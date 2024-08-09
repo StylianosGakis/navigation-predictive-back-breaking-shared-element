@@ -23,8 +23,11 @@ android {
   }
 
   buildTypes {
+    val debug by getting
     release {
-      isMinifyEnabled = false
+      signingConfig = debug.signingConfig // uncomment to run release build locally
+      isMinifyEnabled = true
+      isShrinkResources = true
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
     }
   }
@@ -59,6 +62,7 @@ dependencies {
   implementation(libs.androidx.navigation.runtime)
   implementation(libs.androidx.compose.animation)
   implementation(libs.kotlinx.serialization.core)
+  implementation(libs.kotlinx.serialization.json)
   debugImplementation(libs.androidx.ui.tooling)
   debugImplementation(libs.androidx.ui.test.manifest)
 }

@@ -43,7 +43,11 @@ class MainActivity : ComponentActivity() {
 object A
 
 @Serializable
-object B
+data class B(val someEnum: SomeEnum) {
+  enum class SomeEnum {
+    A, B;
+  }
+}
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
@@ -60,15 +64,15 @@ private fun App() {
           Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Column {
               Text("A: ${LocalLifecycleOwner.current.lifecycle.currentStateAsState()}")
-              Button({ navController.navigate(B) }) { Text("Go to B") }
-              SharedBox( this@composable)
+              Button({ navController.navigate(B(B.SomeEnum.A)) }) { Text("Go to B") }
+              SharedBox(this@composable)
             }
           }
         }
         composable<B> {
           Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Column {
-              SharedBox( this@composable)
+              SharedBox(this@composable)
               Text("B: ${LocalLifecycleOwner.current.lifecycle.currentStateAsState()}")
               Button(dropUnlessResumed { navController.navigate(A) }) { Text("Go to A") }
             }

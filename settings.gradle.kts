@@ -14,12 +14,11 @@ pluginManagement {
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
   repositories {
+    maven(url = "https://androidx.dev/snapshots/builds/12208038/artifacts/repository")
     google()
     mavenCentral()
-    maven(url = "https://androidx.dev/snapshots/builds/12176070/artifacts/repository")
   }
 }
 
 rootProject.name = "predictive-navigation-repro"
 include(":app")
- 
